@@ -75,7 +75,7 @@ def parseFile(filename, text):
         if ">" in line:
             words=line.split(">")[1].rstrip("\n")
             for word in words.split():
-                if word not in "I hey bye it its of for this that the and to hey so there in be if you":
+                if word not in "I bye it its of for this that the and to hey so there in be if you":
                     stripper= str.maketrans('', '', string.punctuation)
                     stripped=word.translate(stripper)
                     if len(stripped) > 0:

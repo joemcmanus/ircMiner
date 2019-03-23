@@ -1,5 +1,5 @@
 # ircMiner
-A python script to mine data from ZNC logs of IRC. For now it creats bar graphs and word clouds. 
+A python script to mine data from ZNC logs of IRC. For now it creates bar graphs and word clouds. 
 
 Usage:  
 

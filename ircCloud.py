@@ -29,7 +29,7 @@ import sys
 import string
 
 
-parser = argparse.ArgumentParser(description='DNS  Word Cloud Image Generation')
+parser = argparse.ArgumentParser(description='ZNC Log Word Cloud Image Generation')
 parser.add_argument('--single', help="Single Source file", type=str, action="store")
 parser.add_argument('--multi', help="keyword for multip[le Source files in the current directory", type=str)
 parser.add_argument('--outfile', help="Destination image file if not specified will be the name of the input file.png", type=str)

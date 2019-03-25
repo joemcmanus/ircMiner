@@ -44,6 +44,9 @@ if args.single == None and args.multi == None:
     print("ERROR:  Must specify a single or keywork for multiple files.")
     quit()
 
+if not args.cloud and not args.graph:
+    print("ERROR:  Must specify a grapg or cloud, otherwise it is like a circle, pointless.")
+    quit()
 
 if args.single:
     if os.path.exists(args.single):

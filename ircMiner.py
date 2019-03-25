@@ -37,6 +37,7 @@ parser.add_argument('--graph', help="Create a graph", action="store_true")
 parser.add_argument('--cloud', help="Create a word cloud", action="store_true")
 parser.add_argument('--title', help="Title of Graph", action="store", default="IRC Cloud")
 parser.add_argument('--exclude', help="List of words to exclude, enclose in quotes", type=str )
+parser.add_argument('--filenames', help="Print name of matching files when using multi",  action="store_true")
 args=parser.parse_args()
 
 
@@ -132,11 +133,29 @@ text=[]
 if args.single:
     text=parseFile(args.single, text, excludeList)
 if args.multi:
+    logFiles=[]
     for filename in os.listdir("."):
         if filename.endswith(".log"):
             if args.multi in filename:
-                print("Processing File: " + filename)
-                text=parseFile(filename, text, excludeList)
+                logFiles.append(filename)
+    if len(logFiles) == 0:
+        print("ERROR: No file matching *{}*.log found".format(args.multi))
+        quit()
+    print("Found {} matching files.".format(len(logFiles)))
+    if args.filenames:
+        print("Files matching multi search string : ") 
+        print(*logFiles, sep='\n')
+   
+    print("Processing file : ", end='')
+    #A bunch of silly stuff to get the status printed on the same line
+    printLength=0
+    for filename in logFiles:
+        print('\b'*printLength, end='')
+        position=("{} of {}".format(logFiles.index(filename)+1, len(logFiles)))
+        print(position, end='', flush=True)
+        printLength=len(position)
+        text=parseFile(filename, text, excludeList)
+    print()
 
 if len(text) == 0:
     print("Sorry after processing the file no matching lines found. Exiting. ") 

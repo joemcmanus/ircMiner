@@ -26,6 +26,7 @@ Usage:
       --cloud            Create a word cloud
       --title TITLE      Title of Graph
       --exclude EXCLUDE  List of words to exclude, enclose in quotes
+      --filenames        Print name of matching files when using multi
 
 
 To look at one log and create a single wordcloud:
@@ -46,28 +47,13 @@ To create a word cloud from all ZNC logs with the word "example" in the name use
     Result Limit : 100
     IMG Width    : 1600
     IMG Height   : 1200
-    Processing File: joe__#example_20190314.log
-    Processing File: joe__#example_20190301.log
-    Processing File: joe__#example_20190315.log
-    Processing File: joe__#example_20190303.log
-    Processing File: joe__#example_20190304.log
-    Processing File: joe__#example_20190310.log
+    Found 118 matching files.
+    Processing file : 118 of 118
 
 To create a bar graph from all ZNC logs with the word "example" in the name use --graph with --multi. `
 
     daneel:logs joe$ ircCloud.py --multi example  --graph  --limit 50 --title "Example Most Common Words" 
     Processing files matching pattern example*.log
     Result Limit : 50
-    Processing File: joe_#example_20190208.log
-    Processing File: joe_#example_20190220.log
-    Processing File: joe_#example_20190221.log
-    Processing File: joe_#example_20190209.log
-    Processing File: joe_#example_20190223.log
-    Processing File: joe_#example_20190222.log
-    Processing File: joe_#example_20190226.log
-    Processing File: joe_#example_20190227.log
-    Processing File: joe_#example_20190225.log
-    Processing File: joe_#example_20190219.log
-    Processing File: joe_#example_20190218.log
-    Processing File: joe_#example_20190224.log
-
+    Found 118 matching files.
+    Processing file : 118 of 118

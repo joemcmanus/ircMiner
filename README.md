@@ -7,6 +7,7 @@ Usage:
     usage: ircMiner.py [-h] [--single SINGLE] [--multi MULTI] [--outfile OUTFILE]
                        [--bgimage BGIMAGE] [--limit LIMIT] [--width WIDTH]
                        [--height HEIGHT] [--graph] [--cloud] [--title TITLE]
+                       [--exclude EXCLUDE]
     
     ZNC Log Miner Image Generation
     
@@ -24,8 +25,7 @@ Usage:
       --graph            Create a graph
       --cloud            Create a word cloud
       --title TITLE      Title of Graph
-
-
+      --exclude EXCLUDE  List of words to exclude, enclose in quotes
 
 
 To look at one log and create a single wordcloud:

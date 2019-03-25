@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-# File    : ircCloud.py 
-# Purpose : A program to create word clouds out of IRC logs from ZNC
+# File    : ircMiner.py 
+# Purpose : A program mine some data from ZNC/IRC logs
 # Author  : Joe McManus josephmc@alumni.cmu.edu
-# Version : 0.1  03/21/2019 Joe McManus
-# Copyright (C) 2018 Joe McManus
+# Version : 0.2  03/24/2019 Joe McManus
+# Copyright (C) 2019 Joe McManus
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -36,6 +36,7 @@ parser.add_argument('--height', help="Height of image, default 1200", type=int, 
 parser.add_argument('--graph', help="Create a graph", action="store_true")
 parser.add_argument('--cloud', help="Create a word cloud", action="store_true")
 parser.add_argument('--title', help="Title of Graph", action="store", default="IRC Cloud")
+parser.add_argument('--exclude', help="List of words to exclude, enclose in quotes", type=str )
 args=parser.parse_args()
 
 
@@ -53,6 +54,12 @@ if args.single:
 
 if args.multi:
     print("Processing files matching pattern " + args.multi + "*.log")
+
+#ignore some common words 
+excludeList="I Its Im bye it its of for this that the and to was its here hey so there in be you on have with are if " 
+if args.exclude:
+    excludeList=excludeList +  args.exclude
+    print("Exclude additoinal word list: {}".format(args.exclude))
 
 if args.graph:
     import plotly
@@ -78,7 +85,7 @@ if args.cloud:
 
 print("Result Limit : {}"  .format(args.limit))
 
-def parseFile(filename, text):
+def parseFile(filename, text, excludeList):
     fh=open(filename, "r")
     for line in fh:
         if ">" in line:
@@ -87,7 +94,7 @@ def parseFile(filename, text):
                 stripper= str.maketrans('', '', string.punctuation)
                 stripped=word.translate(stripper)
                 if len(stripped) > 0:
-                    if word not in "I Its Im bye it its of for this that the and to was its here hey so there in be if you on have with are ":
+                    if stripped  not in excludeList: 
                         text.append(stripped)
     return(text)
 
@@ -120,13 +127,13 @@ def makeFilename(title):
 #empty list
 text=[]
 if args.single:
-    text=parseFile(args.single, text)
+    text=parseFile(args.single, text, excludeList)
 if args.multi:
     for filename in os.listdir("."):
         if filename.endswith(".log"):
             if args.multi in filename:
                 print("Processing File: " + filename)
-                text=parseFile(filename, text)
+                text=parseFile(filename, text, excludeList)
 
 if len(text) == 0:
     print("Sorry after processing the file no matching lines found. Exiting. ") 

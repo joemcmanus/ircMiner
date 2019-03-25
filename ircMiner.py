@@ -57,7 +57,7 @@ if args.single:
         quit()
 
 if args.multi:
-    print("Processing files matching pattern " + args.multi + "*.log")
+    print("Processing files matching pattern *" + args.multi.strip() + "*.log")
 
 #ignore some common words 
 excludeList="I Its Im bye it its of for this that the and to was its here hey so there in be you on have with are if " 

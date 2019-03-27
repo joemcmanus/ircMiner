@@ -68,7 +68,6 @@ if args.exclude:
 if args.graph:
     import plotly
     import plotly.graph_objs as go
-    import psutil
 
 if args.cloud:
     from wordcloud import WordCloud, STOPWORDS

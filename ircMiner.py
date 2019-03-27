@@ -2,7 +2,7 @@
 # File    : ircMiner.py 
 # Purpose : A program mine some data from ZNC/IRC logs
 # Author  : Joe McManus josephmc@alumni.cmu.edu
-# Version : 0.2  03/24/2019 Joe McManus
+# Version : 0.3  03/26/2019 Joe McManus
 # Copyright (C) 2019 Joe McManus
 #
 # This program is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@ parser.add_argument('--width', help="Width of image, default 1600", type=int, de
 parser.add_argument('--height', help="Height of image, default 1200", type=int, default=1200)
 parser.add_argument('--graph', help="Create a graph", action="store_true")
 parser.add_argument('--cloud', help="Create a word cloud", action="store_true")
-parser.add_argument('--title', help="Title of Graph", action="store", default="IRC Cloud")
+parser.add_argument('--title', help="Title of Graph", action="store")
 parser.add_argument('--exclude', help="List of words to exclude, enclose in quotes", type=str )
 parser.add_argument('--filenames', help="Print name of matching files when using multi",  action="store_true")
 args=parser.parse_args()
@@ -68,6 +68,7 @@ if args.exclude:
 if args.graph:
     import plotly
     import plotly.graph_objs as go
+    import psutil
 
 if args.cloud:
     from wordcloud import WordCloud, STOPWORDS
@@ -118,7 +119,8 @@ def createGraph(xData, yData, title):
 
         "data":[ go.Bar( x=xData, y=yData) ],
         "layout": go.Layout(title=title)
-    },filename=makeFilename(title))
+    },filename=makeFilename(title), auto_open=False)
+    print("Plot saved as {}.html".format(title))
 
 def makeFilename(title):
     #first remove spaces 
@@ -169,6 +171,14 @@ if args.cloud:
     createCloud(text, args.width, args.height, args.bgimage)
 
 if args.graph:
+
+    if not args.title:
+        if args.multi:
+            title=args.multi
+        if args.single:
+            title=args.single
+    if not args.outfile:
+        outfile=title
     xData=[]
     yData=[]
     for word in text:
@@ -183,4 +193,4 @@ if args.graph:
                 break
 
         i+=1 
-    createGraph(xData, yData, args.title) 
+    createGraph(xData, yData, title) 

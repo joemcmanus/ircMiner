@@ -1,0 +1,36 @@
+name: ircminer
+version: 1a
+summary: A script to mine IRC logs for fun and profit, well really just entertainment.
+description: |
+ A script to mine IRC logs for fun and profit, well really just entertainment.
+grade: devel
+confinement: strict
+base: core18
+
+
+apps:
+  ircminer:
+    command: bin/ircMiner.py 
+    plugs: 
+    - home 
+
+parts:
+  ircminer:
+    plugin: python
+    python-version: python3
+    python-packages: 
+    - WordCloud
+    - numpy
+    - plotly
+
+  wrapper:
+    plugin: dump
+    source: files/
+    
+  mypackages:
+    plugin: nil
+    stage-packages:
+    - python3 
+    - python3-matplotlib
+    - python3-pil 
+

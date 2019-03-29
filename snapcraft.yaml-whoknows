@@ -1,3 +1,4 @@
+
 name: ircminer
 version: 1a
 summary: A script to mine IRC logs for fun and profit, well really just entertainment.
@@ -20,7 +21,6 @@ parts:
     python-version: python3
     python-packages: 
     - WordCloud
-    - plotly
 
   wrapper:
     plugin: dump
@@ -31,5 +31,7 @@ parts:
     stage-packages:
     - python3 
     - python3-matplotlib
+    - python3-pil 
     - python3-numpy 
+    - python3-plotly
 

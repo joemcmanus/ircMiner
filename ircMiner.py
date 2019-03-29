@@ -2,7 +2,7 @@
 # File    : ircMiner.py 
 # Purpose : A program mine some data from ZNC/IRC logs
 # Author  : Joe McManus josephmc@alumni.cmu.edu
-# Version : 0.3  03/26/2019 Joe McManus
+# Version : 0.4  03/29/2019 Joe McManus
 # Copyright (C) 2019 Joe McManus
 #
 # This program is free software: you can redistribute it and/or modify
@@ -92,14 +92,17 @@ print("Result Limit : {}"  .format(args.limit))
 def parseFile(filename, text, excludeList):
     fh=open(filename, "r")
     for line in fh:
-        if ">" in line:
-            words=line.split(">")[1].rstrip("\n")
-            for word in words.split():
-                stripper= str.maketrans('', '', string.punctuation)
-                stripped=word.translate(stripper)
-                if len(stripped) > 0:
-                    if stripped  not in excludeList: 
-                        text.append(stripped)
+        try:
+            if ">" in line:
+                words=line.split(">")[1].rstrip("\n")
+                for word in words.split():
+                    stripper= str.maketrans('', '', string.punctuation)
+                    stripped=word.translate(stripper)
+                    if len(stripped) > 0:
+                        if stripped  not in excludeList: 
+                            text.append(stripped)
+        except:
+            pass
     return(text)
 
 def createCloud(text, width, height, bgimage):

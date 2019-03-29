@@ -90,7 +90,7 @@ if args.cloud:
 print("Result Limit : {}"  .format(args.limit))
 
 def parseFile(filename, text, excludeList):
-    fh=open(filename, "r")
+    fh=open(filename, "r", encoding="utf-8")
     for line in fh:
         try:
             if ">" in line:

@@ -3,7 +3,7 @@ version: 1a
 summary: A script to mine IRC logs for fun and profit, well really just entertainment.
 description: |
  A script to mine IRC logs for fun and profit, well really just entertainment.
-grade: devel
+grade: stable 
 confinement: strict
 base: core18
 

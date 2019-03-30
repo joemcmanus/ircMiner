@@ -1,4 +1,6 @@
 # ircMiner
+![alt_tag](https://github.com/joemcmanus/ircMiner/blob/master/sample-graph.png)
+
 A python script to mine data from ZNC logs of IRC. For now it creates bar graphs and word clouds. 
 
 Usage:  
@@ -57,3 +59,5 @@ To create a bar graph from all ZNC logs with the word "example" in the name use 
     Result Limit : 50
     Found 118 matching files.
     Processing file : 118 of 118
+
+

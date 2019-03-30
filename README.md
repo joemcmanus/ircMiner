@@ -9,7 +9,7 @@ Usage:
     usage: ircMiner.py [-h] [--single SINGLE] [--multi MULTI] [--outfile OUTFILE]
                        [--bgimage BGIMAGE] [--limit LIMIT] [--width WIDTH]
                        [--height HEIGHT] [--graph] [--cloud] [--title TITLE]
-                       [--exclude EXCLUDE]
+                       [--exclude EXCLUDE] [--filenames]
     
     ZNC Log Miner Image Generation
     
